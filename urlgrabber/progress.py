@@ -22,9 +22,9 @@ from __future__ import print_function
 import sys
 import time
 import math
-import fcntl
+# import fcntl
 import struct
-import termios
+# import termios
 
 if sys.version_info >= (3,):
     # We use a version check because python2 also has _thread
@@ -39,7 +39,7 @@ def terminal_width(fd=1):
     """ Get the real terminal width """
     try:
         buf = 'abcdefgh'
-        buf = fcntl.ioctl(fd, termios.TIOCGWINSZ, buf)
+        # buf = fcntl.ioctl(fd, termios.TIOCGWINSZ, buf)
         ret = struct.unpack('hhhh', buf)[1]
         if ret == 0:
             return 80

@@ -544,7 +544,7 @@ import types
 import stat
 import pycurl
 from ftplib import parse150
-import socket, select, fcntl
+import socket, select #, fcntl
 from io import BytesIO
 import numbers
 
@@ -2232,8 +2232,8 @@ class _ExternalDownloaderPool:
         dl = self.cache.pop(host, None)
         if not dl:
             dl = _ExternalDownloader()
-            fl = fcntl.fcntl(dl.stdin, fcntl.F_GETFD)
-            fcntl.fcntl(dl.stdin, fcntl.F_SETFD, fl | fcntl.FD_CLOEXEC)
+            # fl = fcntl.fcntl(dl.stdin, fcntl.F_GETFD)
+            # fcntl.fcntl(dl.stdin, fcntl.F_SETFD, fl | fcntl.FD_CLOEXEC)
         self.epoll.register(dl.stdout, select.EPOLLIN)
         self.running[dl.stdout] = dl
         dl.start(opts)
